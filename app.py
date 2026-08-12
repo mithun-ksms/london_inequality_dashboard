@@ -167,31 +167,20 @@ with tab2:
     plt.tight_layout()
     st.pyplot(fig)
 
+
 # ── TAB 3 — SHAP ──────────────────────────────────────────
 with tab3:
     st.subheader("What Drives Deprivation Most?")
     st.caption("SHAP analysis shows which factors the model relies on most")
-
     with st.spinner("Running SHAP analysis..."):
-        explainer   = shap.TreeExplainer(model)
+        explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X)
-
-   shap.summary_plot(
-        shap_values, X,
-        plot_type="bar",
-        show=False)
-                    
-    plt.title("Feature Importance — What Drives London Deprivation?")
-    plt.tight_layout()
-    st.pyplot(plt.gcf())
-    plt.clf()
-
-    st.markdown("""
-    **Key finding:** Employment deprivation is the strongest predictor of
-    overall deprivation — more than income, health, crime, or education.
-    Boroughs where residents struggle to find work tend to score worst overall.
-    """)
-
+        shap.summary_plot(shap_values, X, plot_type="bar", show=False)
+        plt.title("Feature Importance — What Drives London Deprivation?")
+        plt.tight_layout()
+        st.pyplot(plt.gcf())
+        plt.clf()
+    st.markdown("**Key finding:** Employment deprivation is the strongest predictor of overall deprivation across London boroughs.")
 # ── TAB 4 — BOROUGH DEEP DIVE ─────────────────────────────
 with tab4:
     st.subheader("Borough Deep Dive")
