@@ -179,8 +179,8 @@ with tab3:
    shap.summary_plot(
         shap_values, X,
         plot_type="bar",
-        show=False
-    )
+        show=False)
+                    
     plt.title("Feature Importance — What Drives London Deprivation?")
     plt.tight_layout()
     st.pyplot(plt.gcf())
