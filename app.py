@@ -176,16 +176,15 @@ with tab3:
         explainer   = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(X)
 
-    fig2, ax2 = plt.subplots(figsize=(8, 5))
-    shap.summary_plot(
+   shap.summary_plot(
         shap_values, X,
         plot_type="bar",
-        show=False,
-        ax=ax2
+        show=False
     )
-    ax2.set_title("Feature Importance — What Drives London Deprivation?")
+    plt.title("Feature Importance — What Drives London Deprivation?")
     plt.tight_layout()
-    st.pyplot(fig2)
+    st.pyplot(plt.gcf())
+    plt.clf()
 
     st.markdown("""
     **Key finding:** Employment deprivation is the strongest predictor of
